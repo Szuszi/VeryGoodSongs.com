@@ -1,0 +1,41 @@
+<%- include('header') -%>
+
+<%- include('menu', {active: 'none'}) -%>
+
+    <div class="container">
+        <div class="card bg-light mt-5 mb-n5">
+            <div class="card-header">
+                Add new song
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <label for="titleInput">Title</label>
+                        <input type="text" class="form-control" id="titleInput">
+                    </div>
+                    <div class="form-group">
+                        <label for="artistInput">Artist</label>
+                        <select class="form-control" id="artistInput">
+                            <option>Wolfgang Amadeus Mozart</option>
+                            <option>Kendrick Lamar</option>
+                            <option>Led Zeppelin</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="ratingInput">Rating</label>
+                        <input type="number" class="form-control" id="ratingInput">
+                        <small id="lenghtHelp" class="form-text text-muted">A number between 0 and 10</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="lenghtInput">Lenght</label>
+                        <input type="text" class="form-control" id="lenghtInput">
+                        <small id="lenghtHelp" class="form-text text-muted">In the format: minutes:seconds</small>
+                    </div>
+                    <a type="button" href="/song" class="btn btn-primary">Add song</a>
+                    <a type="button" href="/song" class="btn btn-outline-primary">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <%- include('footer') -%>

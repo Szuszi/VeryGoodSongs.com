@@ -1,0 +1,82 @@
+__________________________________________________
+Zenék és előadók:
+
+- index.html - táblázat - zenék listája (edit, delete, előadógomb), alul új zene gomb
+- artist.html - táblázat - előadók listája (edit, delete, előadógomb), alul új előadó gomb
+- editsong.html - zene adat edit + save + cancel 
+- editartist.html - előadó adat edit + save + cancel
+- addsong.html - új zene form + save + cancel
+- addartist.html - új előadó form + save + cancel
+- artiswithsongs.html - előadó zenéinek táblázata (edit, delete), alul új zene gomb
+
+_________________________________________________
+Routing:
+(Verygoodsongs.com) (az oldalak végén nem lesz /)
+
+//LISTÁK----------------------------------
+GET /
+	getSongsMW
+	renderMW(index.html)
+
+GET /song
+	getSongsMW
+	renderMW(index.html)
+	
+GET /artist
+	getArtistsMW
+	renderMW(artist.html)
+
+GET /artist/list/:artistid
+	getArtistMW
+	getSongsMW
+	renderMW(artistwithsongs.html)
+
+
+//TÖRLÉS-----------------------------------
+GET /song/del/:songid
+	getSongMW
+	delSongMW
+
+GET /artist/del/:artistid
+	getArtistMW
+	delArtistMW
+
+//EDIT-------------------------------------
+GET, POST /song/edit/:songid
+	getSongMW
+	getArtistsMW
+	saveSongMW
+	renderMW(editsong.html)
+
+GET, POST /artist/edit/:artistid
+	getArtistMW
+	saveArtistMW
+	renderMW(editartist.html)
+
+//NEW--------------------------------------
+GET, POST /song/new
+	getArtistsMW
+	saveSongMW 			//if (typeof req.body.title === 'undefined') {return next();}, amúgy mentés, hibakezelés, átirányítás
+	renderMW(addsong.html)
+	
+GET, POST /artist/new
+	saveArtistMW 			//if (typeof req.body.name === 'undefined') {return next();}, amúgy mentés, hibakezelés, átirányítás
+	renderMW(addartist.html)
+	
+_________________________________________________
+MiddleWare-ek:
+
+renderMW.js
+
+middlewares/song/
+	getSongsMW.js
+	getSongMW.js
+	delSongMW.js
+	saveSongMW.js
+
+middlewares/artist/
+	getArtistsMW.js
+	getArtistMW.js
+	delArtistMW.js
+	saveArtistMW.js
+

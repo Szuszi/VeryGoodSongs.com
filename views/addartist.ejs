@@ -1,0 +1,32 @@
+<%- include('header') -%>
+
+<%- include('menu', {active: 'none'}) -%>
+
+    <div class="container">
+        <div class="card bg-light mt-5 mb-n5">
+            <div class="card-header">
+                Add new artist
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <label for="artistInput">Name</label>
+                        <input type="text" class="form-control" id="artistInput">
+                    </div>
+                    <div class="form-group">
+                        <label for="nationalityInput">Nationality</label>
+                        <input type="text" class="form-control" id="nationalityInput">
+                    </div>
+                    <div class="form-group">
+                        <label for="nationalityInput">Age</label>
+                        <input type="number" class="form-control" id="nationalityInput">
+                        <small id="age help" class="form-text text-muted">If it's a band, age from the foundation</small>
+                    </div>
+                    <a type="button" href="/artist" class="btn btn-primary">Add artist</a>
+                    <a type="button" href="/artist" class="btn btn-outline-primary">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <%- include('footer') -%>
