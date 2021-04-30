@@ -7,11 +7,17 @@
 
  module.exports = function (objectrepository) {
 
-    const ArtistModel = requireOption(objectrepository, 'ArtistModel');
-    const SongModel = requireOption(objectrepository, 'SongModel');
-
     return function (req, res, next) {
-        console.log('delSongMW called');
-        return res.redirect('/song');
+        if (typeof res.locals.oneSong === 'undefined') {
+            return next();
+        }
+
+        res.locals.oneSong.remove(err => {
+            if (err) {
+                return next(err);
+            }
+
+            return res.redirect('/song');
+        });
     };
  };

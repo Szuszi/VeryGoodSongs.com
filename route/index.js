@@ -27,6 +27,7 @@ module.exports = function (app) {
 
     app.get('/artist/del/:artistid',
     getArtistMW(objectrepository),
+    getSongsMW(objectrepository), //We need to delete the songs, which the Artist were included in.
     delArtistMW(objectrepository));
 
     /**
@@ -35,6 +36,7 @@ module.exports = function (app) {
     app.use('/song/edit/:songid',
     getSongMW(objectrepository),
     getArtistsMW(objectrepository), //We need all the Artists, to be able to select them as an artist of the song
+    getArtistMW(objectrepository),
     saveSongMW(objectrepository),
     renderMW(objectrepository, 'editsong'));
 
@@ -46,14 +48,15 @@ module.exports = function (app) {
     /**
      * Adding new entity routes
      */
-     app.use('/song/new',
-     getArtistsMW(objectrepository), //We need all the Artists, to be able to select them as an artist of the song
-     saveSongMW(objectrepository),
-     renderMW(objectrepository, 'addsong'));
+    app.use('/song/new',
+    getArtistsMW(objectrepository), //We need all the Artists, to be able to select them as an artist of the song
+    getArtistMW(objectrepository),
+    saveSongMW(objectrepository),
+    renderMW(objectrepository, 'addsong'));
 
-     app.use('/artist/new',
-     saveArtistMW(objectrepository),
-     renderMW(objectrepository, 'addartist'));
+    app.use('/artist/new',
+    saveArtistMW(objectrepository),
+    renderMW(objectrepository, 'addartist'));
 	 
 	 /**
      * List entity routes
@@ -75,8 +78,14 @@ module.exports = function (app) {
     /**
      *  Default
      */
-     app.get('/',
-     getSongsMW(objectrepository),
-     getArtistsMW(objectrepository),
-     renderMW(objectrepository, 'index'));
+    app.get('/',
+    getSongsMW(objectrepository),
+    getArtistsMW(objectrepository),
+    renderMW(objectrepository, 'index'));
+
+    /**
+     * 404
+     */
+    app.get('*',
+    renderMW(objectrepository, '404'));
 }

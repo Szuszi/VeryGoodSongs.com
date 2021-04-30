@@ -10,17 +10,34 @@
     const ArtistModel = requireOption(objectrepository, 'ArtistModel');
 
     return function (req, res, next) {
-        ArtistModel.findOne(
-            { 
-                _id: req.params.artistid 
-            },
-            (err, oneArtist) => {
-                if(err || !oneArtist){
-                    return next(err);
-                }
+        if(typeof req.body.artist != 'undefined'){
+            ArtistModel.findOne(
+                { 
+                    _id: req.body.artist
+                },
+                (err, oneArtist) => {
+                    if(err || !oneArtist){
+                        return next(err);
+                    }
+    
+                    res.locals.oneArtist = oneArtist;
+                    return next();
+            })
+        }
 
-                res.locals.oneArtist = oneArtist;
-                return next();
-        })
+        else {
+            ArtistModel.findOne(
+                { 
+                    _id: req.params.artistid 
+                },
+                (err, oneArtist) => {
+                    if(err || !oneArtist){
+                        return next(err);
+                    }
+
+                    res.locals.oneArtist = oneArtist;
+                    return next();
+            })
+        }
     };
 };

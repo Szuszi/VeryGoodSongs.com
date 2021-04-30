@@ -8,30 +8,35 @@
                 Edit song
             </div>
             <div class="card-body">
-                <form>
+                <form method="POST">
                     <div class="form-group">
-                        <label for="titleInput">Title</label>
-                        <input type="text" class="form-control" id="titleInput">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" id="title" name="title" value="<%= oneSong.title %>">
                     </div>
                     <div class="form-group">
-                        <label for="artistInput">Artist</label>
-                        <select class="form-control" id="artistInput">
-                            <option>Wolfgang Amadeus Mozart</option>
-                            <option>Kendrick Lamar</option>
-                            <option>Led Zeppelin</option>
+                        <label for="artist">Artist</label>
+                        <select class="form-control" id="artist" name="artist">
+                            <% artists.forEach(function(artist){ %>
+                            <option value="<%= artist._id %>" 
+                                <% if (artist._id.equals(oneSong._artist)) { %>
+                                    selected="selected"
+                                <% } %>>
+                                <%= artist.name %>
+                            </option>
+                            <% }); %>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="ratingInput">Rating</label>
-                        <input type="number" class="form-control" id="ratingInput">
-                        <small id="lenghtHelp" class="form-text text-muted">A number between 0 and 10</small>
+                        <label for="rating">Rating</label>
+                        <input type="number" class="form-control" id="rating" name="rating" min="0" max="10" value="<%= oneSong.rating %>">
+                        <small id="ratingtHelp" class="form-text text-muted">A number between 0 and 10</small>
                     </div>
                     <div class="form-group">
-                        <label for="lenghtInput">Lenght</label>
-                        <input type="text" class="form-control" id="lenghtInput">
-                        <small id="lenghtHelp" class="form-text text-muted">In the format: minutes:seconds</small>
+                        <label for="length">Length</label>
+                        <input type="text" class="form-control" id="length" name="length" value="<%= oneSong.length %>">
+                        <small id="lengthHelp" class="form-text text-muted">In the format: minutes:seconds</small>
                     </div>
-                    <a type="button" href="/song" class="btn btn-primary">Edit song</a>
+                    <input type="submit" class="btn btn-primary" value="Edit song"/>
                     <a type="button" href="/song" class="btn btn-outline-primary">Cancel</a>
                 </form>
             </div>

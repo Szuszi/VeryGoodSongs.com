@@ -7,12 +7,18 @@
 
  module.exports = function (objectrepository) {
 
-    const ArtistModel = requireOption(objectrepository, 'ArtistModel');
-
     return function (req, res, next) {
         if (typeof res.locals.oneArtist === 'undefined') {
             return next();
         }
+
+        res.locals.songs.forEach(song => {
+            song.remove(err => {
+                if (err) {
+                    return next(err);
+                }
+            });
+        });
 
         res.locals.oneArtist.remove(err => {
             if (err) {

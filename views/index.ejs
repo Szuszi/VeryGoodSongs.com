@@ -9,7 +9,7 @@
                     <th scope="col">Title</th>
                     <th scope="col">Artists</th>
                     <th scope="col" class="text-center" style="width: 100px;">Rating</th>
-                    <th scope="col" class="text-center" style="width: 100px;">Lenght</th>
+                    <th scope="col" class="text-center" style="width: 100px;">Length</th>
                     <th scope="col" style="width:  100px;"></th>
                 </tr>
             </thead>
@@ -22,7 +22,7 @@
                         <td>
                             
                             <% artists.forEach(function(artist) { %>
-                                <% if (song._artist == artist._id) { %>
+                                <% if (song._artist.equals(artist._id)) { %>
                                     <a href="/artist/list/<%= song._artist %>" class="text-dark">
                                     <%= artist.name %>
                                     </a>
@@ -40,39 +40,7 @@
                             <a href="/song/del/<%= song._id %>" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a>
                         </td>
                     </tr>
-                <% }); %>
-                <!--
-                <tr>
-                    <td>B-dúr fagottverseny (K.191), 1. tétel</td>
-                    <td><a href="/artist/list/1" class="text-dark">Wolfgang Amadeus Mozart</a></td>
-                    <td class="text-center">10/10</td>
-                    <td class="text-center">4:20</td>
-                    <td class="text-center">
-                        <a href="/song/edit/1" class="btn btn-sm btn-primary"><i class="far fa-edit"></i></a>
-                        <a href="/song/del/1" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>HUMBLE.</td>
-                    <td><a href="/artist/list/1" class="text-dark">Kendrick Lamar</a></td>
-                    <td class="text-center">8/10</td>
-                    <td class="text-center">2:57</td>
-                    <td class="text-center">
-                        <a href="/song/edit/1" class="btn btn-sm btn-primary"><i class="far fa-edit"></i></a>
-                        <a href="/song/del/1" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Stairway to Heaven</td>
-                    <td><a href="/artist/list/1" class="text-dark">Led Zeppelin</a></td>
-                    <td class="text-center">9/10</td>
-                    <td class="text-center">8:02</td>
-                    <td class="text-center">
-                        <a href="/song/edit/1" class="btn btn-sm btn-primary"><i class="far fa-edit"></i></a>
-                        <a href="/song/del/1" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a>
-                    </td>
-                </tr>
-                -->   
+                <% }); %>  
             </tbody>
         </table>
         <br>
