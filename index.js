@@ -21,10 +21,15 @@ mozart.save((err) => {
 
 
 const express = require('express');
+const bodyParser = require('body-parser');
+
 const app = express();
 
-app.use(express.static('static'));
 app.set('view engine', 'ejs');
+app.use(express.static('static'));
+
+app.use(bodyParser.urlencoded());
+app.use(bodyParser.json());
 
 // Load routing
 require('./route/index')(app);

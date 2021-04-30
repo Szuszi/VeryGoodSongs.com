@@ -11,8 +11,29 @@
     const ArtistModel = requireOption(objectrepository, 'ArtistModel');
 
     return function (req, res, next) {
-        console.log('saveArtistMW called');
-        //return res.redirect('/artist');
-        next();
+        if (
+            typeof req.body.name === 'undefined' ||
+            typeof req.body.nationality === 'undefined' ||
+            typeof req.body.age === 'undefined'
+        ) {
+            return next();
+        }
+
+        if (typeof res.locals.oneArtist === 'undefined') {
+            res.locals.oneArtist = new ArtistModel();
+            console.log('new Artist made');
+        }
+
+        res.locals.oneArtist.name = req.body.name;
+        res.locals.oneArtist.nationality = req.body.nationality;
+        res.locals.oneArtist.age = req.body.age;
+
+        res.locals.oneArtist.save(err => {
+            if (err) {
+                return next(err);
+            }
+
+            return res.redirect('/artist');
+        });
     };
  };

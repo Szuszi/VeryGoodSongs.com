@@ -8,21 +8,21 @@
                 Add new artist
             </div>
             <div class="card-body">
-                <form>
+                <form method="POST">
                     <div class="form-group">
-                        <label for="artistInput">Name</label>
-                        <input type="text" class="form-control" id="artistInput">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name">
                     </div>
                     <div class="form-group">
-                        <label for="nationalityInput">Nationality</label>
-                        <input type="text" class="form-control" id="nationalityInput">
+                        <label for="nationality">Nationality</label>
+                        <input type="text" class="form-control" id="nationality" name="nationality">
                     </div>
                     <div class="form-group">
-                        <label for="nationalityInput">Age</label>
-                        <input type="number" class="form-control" id="nationalityInput">
+                        <label for="age">Age</label>
+                        <input type="number" class="form-control" id="age" name="age">
                         <small id="age help" class="form-text text-muted">If it's a band, age from the foundation</small>
                     </div>
-                    <a type="button" href="/artist" class="btn btn-primary">Add artist</a>
+                    <input type="submit" class="btn btn-primary" value="Add artist"/>
                     <a type="button" href="/artist" class="btn btn-outline-primary">Cancel</a>
                 </form>
             </div>

@@ -10,7 +10,16 @@
     const ArtistModel = requireOption(objectrepository, 'ArtistModel');
 
     return function (req, res, next) {
-        console.log('delArtistMW called');
-        return res.redirect('/artist');
+        if (typeof res.locals.oneArtist === 'undefined') {
+            return next();
+        }
+
+        res.locals.oneArtist.remove(err => {
+            if (err) {
+                return next(err);
+            }
+
+            return res.redirect('/artist');
+        });
     };
 };
