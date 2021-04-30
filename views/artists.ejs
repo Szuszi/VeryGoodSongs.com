@@ -13,6 +13,24 @@
                 </tr>
             </thead>
             <tbody>
+                <% artists.forEach(function(artist){ %>
+                    <tr>
+                        <td>
+                            <a href="/artist/list/<%= artist._id %>" class="text-dark"><%= artist.name %></a>
+                        </td>
+                        <td>
+                            <%= artist.nationality %>
+                        </td>
+                        <td class="text-center">
+                            <%= artist.age %>
+                        </td>
+                        <td class="text-center">
+                            <a href="/artist/edit/<%= artist._id %>" class="btn btn-sm btn-primary"><i class="far fa-edit"></i></a>
+                            <a href="/artist/del/<%= artist._id %>" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                <% }); %>
+                <!--
                 <tr>
                     <td><a href="/artist/list/1" class="text-dark">Wolfgang Amadeus Mozart</a></td>
                     <td>Austrian</td>
@@ -40,11 +58,11 @@
                         <a href="/artist/del/1" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a>
                     </td>
                 </tr>
+                -->
             </tbody>
         </table>
         <br>
         <a href="/artist/new" class="btn btn-block btn-primary">Add new artist</a>
     </div>
 
-
-    <%- include('footer') -%>
+<%- include('footer') -%>

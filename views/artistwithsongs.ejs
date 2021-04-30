@@ -4,9 +4,9 @@
 
     <div class="card bg-light container mt-5 mb-n5">
         <div class="card-body">
-          <h5 class="card-title">Wolfgang Amadeus Mozart</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Nationality: Austrian</h6>
-          <h6 class="card-subtitle mb-2 text-muted">Age: 265</h6>
+          <h5 class="card-title"><%= oneArtist.name %></h5>
+          <h6 class="card-subtitle mb-2 text-muted">Nationality: <%= oneArtist.nationality %></h6>
+          <h6 class="card-subtitle mb-2 text-muted">Age: <%= oneArtist.age %></h6>
         </div>
       </div>
 
@@ -22,6 +22,27 @@
                 </tr>
             </thead>
             <tbody>
+                <% songs.forEach(function(song){ %>
+                    <tr>
+                        <td>
+                            <%= song.title %>
+                        </td>
+                        <td>
+                            <%= oneArtist.name %>
+                        </td>
+                        <td class="text-center">
+                            10/<%= song.rating %>
+                        </td>
+                        <td class="text-center">
+                            <%= song.length %>
+                        </td>
+                        <td class="text-center">
+                            <a href="/song/edit/<%= song._id %>" class="btn btn-sm btn-primary"><i class="far fa-edit"></i></a>
+                            <a href="/song/del/<%= song._id %>" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                <% }); %>
+                <!--
                 <tr>
                     <td>B-dúr fagottverseny (K.191), 1. tétel</td>
                     <td>Wolfgang Amadeus Mozart</td>
@@ -32,6 +53,7 @@
                         <a href="/song/del/1" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a>
                     </td>
                 </tr>
+                -->
             </tbody>
         </table>
         <br>

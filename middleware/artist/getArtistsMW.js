@@ -9,8 +9,14 @@
 
     const ArtistModel = requireOption(objectrepository, 'ArtistModel');
 
-    return function (req, res, next) {
-        console.log('getArtistsMW called');
-        next();
+    return function (req, res, next) {   
+        ArtistModel.find({}, (err, artists) => {
+            if(err){
+                return next(err);
+            }
+
+            res.locals.artists = artists;
+            return next();
+        }); 
     };
 };

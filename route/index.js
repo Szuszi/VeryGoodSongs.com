@@ -60,6 +60,7 @@ module.exports = function (app) {
      */
     app.get('/song',
     getSongsMW(objectrepository),
+    getArtistsMW(objectrepository),
     renderMW(objectrepository, 'index'));
 
     app.get('/artist',
@@ -76,5 +77,6 @@ module.exports = function (app) {
      */
      app.get('/',
      getSongsMW(objectrepository),
+     getArtistsMW(objectrepository),
      renderMW(objectrepository, 'index'));
 }

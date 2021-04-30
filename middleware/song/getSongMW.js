@@ -7,11 +7,20 @@
 
  module.exports = function (objectrepository) {
 
-    const ArtistModel = requireOption(objectrepository, 'ArtistModel');
     const SongModel = requireOption(objectrepository, 'SongModel');
 
     return function (req, res, next) {
-        console.log('getSongMW called');
-        next();
+        SongModel.findOne(
+            { 
+                _id: req.params.songid 
+            },
+            (err, oneSong) => {
+                if(err || !oneSong){
+                    return next(err);
+                }
+
+                res.locals.oneSong = oneSong;
+                return next();
+        })
     };
  };
