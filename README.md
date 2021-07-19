@@ -3,7 +3,7 @@ This is a basic website made for the course: "Server-Side JavaScript".
 The site handles two object types, Artists and Songs, and allows all CRUD functions for both of them.
 
 The website runs in node.js by an express application, dynamic htmls were made with express templating.  
-Mongoose are used to get the objects from a MongoDB database. 
+Mongoose are used to manage objects from a MongoDB database. 
 
 # Front-end:
 Front-end was made with Bootstrap
